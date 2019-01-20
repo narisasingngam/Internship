@@ -3,6 +3,10 @@ package hangman;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Hangman game model
+ * @author narisa singngam
+ */
 public class GameModel {
 	
 	private static GameModel instance;
@@ -28,22 +32,24 @@ public class GameModel {
 		return instance;
 	}
 	
+	/** Get list of word from the file*/
 	public List<String> getWords(){
 		return words;
 	}
 	
+	/** Get list of hint  from the file*/
 	public List<String> getHint(){
 		return hint;
 	}
-	
+	/** Get number of score */
 	public int getScore(){
 		return score;
 	}
-	
+	/**Get size for entering letter*/
 	public int getSizeTime(){
 		return sizetime;
 	}
-	
+	/**Get the number of wrong answer*/
 	public int getCountWrongAnswer(){
 		return countWrongAns;
 	}

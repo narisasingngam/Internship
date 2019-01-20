@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
+/**
+ * Read text file on the hangman game
+ * @author narisa singngam
+ */
 public class ReadFiles {
 	
 	private GameModel model;
@@ -13,6 +16,11 @@ public class ReadFiles {
 		model = GameModel.getInstance();
 	}
 	
+	/**
+	 * Read file on text
+	 * @param fileText
+	 * @throws IOException
+	 */
 	public void readFile(String fileText) throws IOException {
 		File file = new File(fileText);
 		BufferedReader bufer = new BufferedReader(new FileReader(fileText));
