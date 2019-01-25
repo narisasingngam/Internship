@@ -180,15 +180,15 @@ public class GameController {
 		while(isTrue){
 			int num = scan.nextInt();
 			if(num == 1) {
-				file.readFile("text1.txt");
+				file.readFile("hangman/text1.txt");
 				isTrue = false;
 			}
 			else if(num == 2) {
-				file.readFile("text2.txt");
+				file.readFile("hangman/text2.txt");
 				isTrue = false;
 			}
 			else if(num == 3) {
-				file.readFile("text3.txt");
+				file.readFile("hangman/text3.txt");
 				isTrue = false;
 			}
 			else System.out.println("Please enter number of category");
