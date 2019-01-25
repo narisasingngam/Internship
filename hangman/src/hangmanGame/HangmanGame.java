@@ -1,4 +1,4 @@
-package hangman;
+package hangmanGame;
 
 import java.io.IOException;
 import java.util.Scanner;
