@@ -3,33 +3,35 @@ package hangman;
 import java.io.IOException;
 import java.util.Scanner;
 
+import Model.HangmanWord;
+
 /**
- * View of Hangman game
+ * View of Hangman game.
  * @author narisa singngam
  */
 public class HangmanGame {
 
 	private GameController game;
-	private ReadFiles file;
-	private GameModel model;
+	private HangmanWord model;
 	private boolean gameStatus = true;
 
 	public HangmanGame() {
 		game = new GameController();
-		file = new ReadFiles();
-		model = GameModel.getInstance();
+		model = HangmanWord.getInstance();
 	}
 
 	/**
-	 * Start a new game
+	 * Start a new game.
 	 * @throws IOException
 	 */
 	public void startGame() throws IOException {
 
 		while(gameStatus){
-			
-		//เลือกตัวเลข
-		file.readFile("text.txt");
+		model.getWords().clear();
+		model.getHint().clear();
+		printQuestion();
+		game.selectNumberFileGame();
+		
 		int countWord = model.getWords().size();
 		
 		while (!(countWord <= 0)) {
@@ -41,64 +43,41 @@ public class HangmanGame {
 
 			game.addWord(word);
 			game.clearLetter();
+			game.showLetter();
 			game.countTime();
-			// enter new letter
-			enterLetter();
+			//Enter new letter.
+			game.enterLetter();
 			
 			if (model.getCountWrongAnswer() <= 0) {
 				System.out.println("Game Over");
-				gameStatus = false;
 				break;
 			}
-
 			game.clearChar();
 			countWord -= 1;
 		}
-		//Start a new game part
+		//Start a new game part.
 		newGame();
 		
 		}
 		
 	}
-
-	/**
-	 * Input new letter in to the game
-	 */
-	public void enterLetter() {
-
-		while (model.getSizeTime() != 0) {
-			System.out.print("Enter letter: ");
-			Scanner scan = new Scanner(System.in);
-			String s = scan.next();
-			game.checkLetter(s);
-			game.wrongGuess();
-
-			if (model.getCountWrongAnswer() <= 0) {
-				break;
-			}
-			System.out.println("Remaining wrong guess " + model.getCountWrongAnswer());
-			game.showLetter();
-			if (!game.getletChar().contains('_'))
-				break;
-		}
-	}
 	
 	/**
-	 * Check for starting new game
+	 * Check for starting new game.
 	 */
 	public void newGame(){
 		System.out.println("Do you want to quit the game?(y/n)");
 		Scanner scan = new Scanner(System.in);
-		String s = scan.next();
 		
 		while(true){
+			String s = scan.next();
 			if(s.equals("y")) {
 				gameStatus = false;
 				break;
 			}
 			else if(s.equals("n")){
 				gameStatus = true;
-				//clear old score
+				//Clear old score.
 				model.setScore(0);
 				game.clearChar();
 				model.setCountWrongAnswer(5);
@@ -106,6 +85,13 @@ public class HangmanGame {
 			}
 			else System.out.println("Please enter 'y or n' ");
 		}
+	}
+	
+	public void printQuestion(){
+		System.out.println("Select Category:");
+		System.out.println("1.Country");
+		System.out.println("2.Career");
+		System.out.println("3.General knowledge in thailand");
 	}
 
 }

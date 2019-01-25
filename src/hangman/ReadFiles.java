@@ -4,20 +4,23 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
+
+import Model.HangmanWord;
 /**
- * Read text file on the hangman game
+ * Read text file on the hangman game.
  * @author narisa singngam
  */
 public class ReadFiles {
 	
-	private GameModel model;
+	private HangmanWord model;
 	
 	public ReadFiles(){
-		model = GameModel.getInstance();
+		model = HangmanWord.getInstance();
 	}
 	
 	/**
-	 * Read file on text
+	 * Read file on text.
 	 * @param fileText
 	 * @throws IOException
 	 */
@@ -27,11 +30,11 @@ public class ReadFiles {
 		String st;
 		int count = 1;
 		while ((st = bufer.readLine()) != null) {
-			//ลองแยก hint ดู
-			if(count%2 != 0) model.getWords().add(st);
+			if(count%2 != 0) model.getWords().add(st.toUpperCase());
 			else model.getHint().add(st);
 			count++;
 		}
 	}
+	
 
 }
