@@ -22,18 +22,18 @@ public class Main {
 		try {
 			// weather.xml
 			bufer = new BufferedReader(new FileReader(file+input));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(file+"weather.json"));
 			StringBuilder build = new StringBuilder();
 			String st;
-
 			while ((st = bufer.readLine()) != null) {
 				build.append(st);
 			}
-
+			
 			JSONObject json = XML.toJSONObject(build.toString());
-			String temp = json.toString(5);
+			String temp = json.toString(6);
 			System.out.println(temp);
-			writer.write(json.toString(5));
+			
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file+"weather.json"));
+			writer.write(json.toString(6));
 			writer.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Please Enter correct file");
