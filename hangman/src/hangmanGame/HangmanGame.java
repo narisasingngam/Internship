@@ -37,7 +37,6 @@ public class HangmanGame {
 		while (!(countWord <= 0)) {
 			String word = model.getWords().get(countWord - 1);
 			String hint = model.getHint().get(countWord - 1);
-			System.out.println(word);
 			System.out.println(hint);
 			System.out.println();
 

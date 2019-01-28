@@ -193,13 +193,13 @@ public class GameController {
 		while (isTrue) {
 			String num = scan.next();
 			if (num.equals("1")) {
-				file.readFile("hangman/text1.txt");
+				file.readFile("hangman/src/text1.txt");
 				isTrue = false;
 			} else if (num.equals("2")) {
-				file.readFile("hangman/text2.txt");
+				file.readFile("hangman/src/text2.txt");
 				isTrue = false;
 			} else if (num.equals("3")) {
-				file.readFile("hangman/text3.txt");
+				file.readFile("hangman/src/text3.txt");
 				isTrue = false;
 			} else
 				System.out.println("Please enter number of category");
