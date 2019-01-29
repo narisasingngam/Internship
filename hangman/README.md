@@ -7,10 +7,16 @@
 1. Clone the repository.
 $ git clone https://github.com/narisasingngam/Internship.git
 2. Get in to the program.
-3. Run application.
+```
+### You can run java file with IDE
++ Eclipse - [download](https://www.eclipse.org/downloads/)
++ IntelliJ - [download](https://www.jetbrains.com/idea/download/#section=mac)
+
+### Or command line open with jar file
+```
+Run application.
 $ java -jar hangman.jar
 ```
-
 ### Information
 ```
 Name : Narisa Signgnam
