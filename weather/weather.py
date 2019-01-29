@@ -1,6 +1,7 @@
 from xml.etree import cElementTree as ElementTree
 import json
 
+
 def Xml_to_dict(xml_data):
     '''
     Change xml tag to dictionary
@@ -22,6 +23,7 @@ def Xml_to_dict(xml_data):
             collect_dic.update({item.tag: item.text})
     return collect_dic
 
+
 def two_tag_different(list_items):
     '''
     Condition of list items that have to group the data in list together
@@ -36,17 +38,25 @@ def two_tag_different(list_items):
 
     return array_tag
 
-def read_file(weather):
+
+def read_file():
     '''
     Read file xml.
-    :param weather: File mane
     :return: String in file
     '''
-    f = open("weather/"+weather, "r")
+    while True:
+        input_data = input("Input file xml :")
+        try:
+            f = open("weather/"+input_data, "r")
+        except FileNotFoundError:
+            print("Input file weather.xml")
+        else:
+            break
+
     return f.read()
 
-def write_file(weather_json,file_json):
 
+def write_file(weather_json, file_json):
     '''
     Create file json.
     :param weather_json: File output name
@@ -57,15 +67,14 @@ def write_file(weather_json,file_json):
     f = open("weather/"+file_json, "w+")
     f.write(json.dumps(weather_json, indent=2))
 
+
 def main():
-    input_data = input("Input file xml :")
-    temp = read_file(input_data)
+    temp = read_file()
     root = ElementTree.XML(temp)
     weather_json = Xml_to_dict(root)
     output_data = input("Output file json :")
-    write_file(weather_json,output_data)
+    write_file(weather_json, output_data)
+
 
 if __name__ == '__main__':
     main()
-
-
