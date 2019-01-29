@@ -2,54 +2,60 @@ from xml.etree import cElementTree as ElementTree
 import json
 
 def Xml_to_dict(xml_data):
+    '''
+    Change xml tag to dictionary
+    :param xml_data: Xml tag data
+    :return : Dictionary of data
+    '''
     collect_dic = dict()
     if xml_data.items():
         collect_dic.update(dict(xml_data.items()))
 
-    for element in xml_data:
-        if element:
-            if len(element) == 1 or element[0].tag != element[1].tag:
-                array_tag = Xml_to_dict(element)
-            else:
-                array_tag = {element[0].tag: Xml_to_dict_in_array(element)}
+    for item in xml_data:
+        if item:
+            array_tag = two_tag_different(item)
+            collect_dic.update({item.tag: array_tag})
 
-            if element.items():
-                array_tag.update(dict(element.items()))
-            collect_dic.update({element.tag: array_tag})
-
-        elif element.items():
-            collect_dic.update({element.tag: dict(element.items())})
+        elif item.items():
+            collect_dic.update({item.tag: dict(item.items())})
         else:
-            collect_dic.update({element.tag: element.text})
+            collect_dic.update({item.tag: item.text})
     return collect_dic
 
-
-def Xml_to_dict_in_array(xml_data):
-
+def two_tag_different(list_items):
     '''
-
-    :param xml_data:
-    :return: List of Dictionary
+    Condition of list items that have to group the data in list together
     '''
+    if list_items[0].tag != list_items[1].tag:
+        array_tag = Xml_to_dict(list_items)
+    else:
+        array_tag = {list_items[0].tag: Xml_to_dict(list_items)}
 
-    collect_dic = dict()
+    if list_items.items():
+        array_tag.update(dict(list_items.items()))
 
-    if xml_data.items():
-        collect_dic.update(dict(xml_data.items()))
-
-        for element in xml_data:
-            if element.items():
-                collect_dic.update({element.tag: dict(element.items())})
-            else:
-                collect_dic.update({element.tag: element.text})
-    return collect_dic
+    return array_tag
 
 def read_file(weather):
+    '''
+    Read file xml.
+    :param weather: File mane
+    :return: String in file
+    '''
     f = open("weather/"+weather, "r")
     return f.read()
+
 def write_file(weather_json,file_json):
+
+    '''
+    Create file json.
+    :param weather_json: File output name
+    :param file_json: Dictionary data
+    :return:
+    '''
+
     f = open("weather/"+file_json, "w+")
-    f.write(json.dumps(weather_json, indent=4))
+    f.write(json.dumps(weather_json, indent=2))
 
 def main():
     input_data = input("Input file xml :")

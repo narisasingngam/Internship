@@ -6,5 +6,5 @@ Teacher
 > Student
 Pilot
 > Aeroplane
-Detist
+Dentist
 > Teeth

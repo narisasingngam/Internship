@@ -9,7 +9,7 @@
 1. Clone the repository.
 $ git clone https://github.com/narisasingngam/Internship.git
 2. Get in to the program.
-3. python weather/weather/weather.py
+3. python weather/weather.py
 ```
 ### How to complie this program.
 ```
